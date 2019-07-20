@@ -1,0 +1,282 @@
+<html>
+	<head>
+		<title> Importing GLTF formats </title>
+		<style>
+			body {
+				margin: 0;
+			}
+			#number {
+				position: absolute;
+    			z-index: -1;
+			}
+			canvas {
+				width: 100%;
+		    	height: 100px;
+				display: block;
+			}
+
+			.annotation {
+			    position: absolute;
+			    top: 0;
+			    left: 0;
+			    z-index: 1;
+			    margin-left: 15px;
+			    margin-top: 15px;
+			    padding: 1em;
+			    width: 200px;
+			    color: #fff;
+			    background: rgba(0, 0, 0, 0.8);
+			    border-radius: 0.5em;
+			    font-family: Consolas;
+			    font-size: 12px;
+			    line-height: 1.2;
+		    transition: opacity 0.5s;
+			    &::before {
+		        	content: "1";
+			        position: absolute;
+			        top: -30px;
+			        left: -30px;
+			        width: 30px;
+			        height: 30px;
+			        border: 2px solid #fff;
+			        border-radius: 50%;
+			        font-size: 16px;
+			        line-height: 30px;
+			        text-align: center;
+			        background: rgba(0, 0, 0, 0.8);
+			    }
+			}
+
+			.form {
+				position: absolute;
+				margin-left: 20px;
+				margin-top: 10px;
+				background-color: #000000;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="annotation">
+		    <p><strong>Radiator v0.1-Test</strong></p>
+		    <p>Hey there!, I am a Radiator and I was made in blender and exported here :)</p>
+		    <p> Left End Temperature: <span id="x_out">100</span>%</p>
+		    <p> Right End Temperature: <span id="y_out">0</span>%</p>
+		</div>
+
+		<div class="form">
+			<input id="x_in" type="text" value="left end temperature"/>
+			<input id="y_in" type= "text" value="right end temperature"/>
+			<button id="update">Update</button>
+		</div>
+		<canvas id="number"></canvas>
+		
+		<script src="js/three.js" > </script>
+		<script src="js/OrbitControls.js"> </script>
+		<script src="https://cdn.rawgit.com/mrdoob/three.js/master/examples/js/loaders/GLTFLoader.js"> </script>
+		<script>
+
+			// Form input
+			document.getElementById("update").addEventListener("click", function(){
+				var p1 = document.getElementById("x_in").value;
+				var p2 = document.getElementById("y_in").value;
+
+				document.getElementById("x_out").textContent = p1;
+				document.getElementById("y_out").textContent = p2;
+
+			  	uniforms.colorA.value.setRGB(p1/100, 0, (100-p1)/100);
+			  	uniforms.colorB.value.setRGB(p2/100, 0, (100-p2)/100);
+			});
+
+			// Canvas
+			const canvas = document.getElementById("number");
+
+			let camera;
+			let controls;
+			let scene;
+			let renderer;
+			let sprite;
+			var mesh;
+			var mesh_width;
+			let spriteBehindObject;
+			let uniforms;
+			let material;
+			const annotation = document.querySelector(".annotation");
+
+			init();
+			animate();
+
+			function init() {
+		    
+			    // Camera
+			    camera = new THREE.PerspectiveCamera(85, window.innerWidth / window.innerHeight, 0.1, 2000);
+			    camera.position.x = 5;
+			    camera.position.y = 5;
+			    camera.position.z = 12;
+				
+				// Scene
+				scene = new THREE.Scene();
+				
+				// Axes Helper
+				var axesHelper = new THREE.AxesHelper( 10 );
+				scene.add( axesHelper );
+				
+				// Instantiate a loader
+				var loader = new THREE.GLTFLoader();
+
+				// Load a glTF resource
+				loader.load(
+					// resource URL
+					'models/rad.gltf',
+					// called when the resource is loaded
+					function ( gltf ) {
+						//mesh = gltf;
+						mesh = gltf.scene.children[2];
+					  	//mesh.position.set( 0, 0, 0 );
+					  	//mesh.scale.x = 210;
+					  	//mesh.scale.z = 200;
+						//mesh.rotation.x = 0;
+						//mesh.rotation.y = 2;
+						mesh.geometry.computeBoundingBox();
+						uniforms.w.value = (mesh.geometry.boundingBox.max.x - mesh.geometry.boundingBox.min.x) / 2
+						mesh.material = material;
+
+						//mesh.material.emissive = new THREE.Color( "#FFFFFF" );
+						scene.add( mesh );
+
+					},
+					// called while loading is progressing
+					function ( xhr ) {
+						console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
+					},
+					// called when loading has errors
+					function ( error ) {
+						console.log( 'An error happened :' + error );
+					}
+				);
+
+				uniforms = {
+					colorA: {type: 'vec3', value: new THREE.Color("#FF0000")},
+					colorB: {type: 'vec3', value: new THREE.Color("#0000FF")},
+					w: {type: 'float', value: 0.0}
+				};
+
+				material = new THREE.ShaderMaterial({
+					uniforms: uniforms,
+					fragmentShader: fragmentShader(),
+					vertexShader: vertexShader()
+				});
+
+				// Sprite
+			    const numberTexture = new THREE.CanvasTexture(
+		        	document.querySelector("#number")
+			    );
+
+			    const spriteMaterial = new THREE.SpriteMaterial({
+			        map: numberTexture,
+			        alphaTest: 0.5,
+			        transparent: true,
+			        depthTest: false,
+			        depthWrite: false
+			    });
+
+			    sprite = new THREE.Sprite(spriteMaterial);
+			    sprite.position.set(10.5, 2.5, 1);
+			    sprite.scale.set(60, 60, 1);
+
+			    scene.add(sprite);
+
+				// Renderer
+			    renderer = new THREE.WebGLRenderer({ antialias: true });
+			    renderer.setPixelRatio(window.devicePixelRatio);
+			    renderer.setSize(window.innerWidth, window.innerHeight);
+			    renderer.setClearColor(0x333333, 1);
+			    document.body.appendChild(renderer.domElement);
+
+				// Orbit Controls		
+				controls = new THREE.OrbitControls( camera, renderer.domElement);
+				//controls.update() must be called after any manual changes to the camera's transform
+				//camera.position.set( 0, 20, 70 );
+				//controls.update();
+
+				window.addEventListener("resize", onWindowResize, false);
+			}
+
+			function onWindowResize() {
+			    camera.aspect = window.innerWidth / window.innerHeight;
+			    camera.updateProjectionMatrix();
+
+			    renderer.setSize(window.innerWidth, window.innerHeight);
+			}	
+			
+			function animate() {
+				requestAnimationFrame( animate );
+				controls.update();
+				
+				render();
+			}
+
+			function render() {
+				renderer.render(scene, camera);
+				updateAnnotationOpacity();
+    			updateScreenPosition();
+			}
+
+			function updateAnnotationOpacity() {
+			    const meshDistance = camera.position.distanceTo(mesh.position);
+			    const spriteDistance = camera.position.distanceTo(sprite.position);
+			    spriteBehindObject = spriteDistance > meshDistance;
+			    sprite.material.opacity = spriteBehindObject ? 0.25 : 1;
+
+			    // Do you want a number that changes size according to its position?
+			    // Comment out the following line and the `::before` pseudo-element.
+			    sprite.material.opacity = 0;
+			}
+
+			function updateScreenPosition() {
+			    const vector = new THREE.Vector3(10.5, 2.5, 1);
+			    const canvas = renderer.domElement;
+
+			    vector.project(camera);
+
+			    vector.x = Math.round((0.5 + vector.x / 2) * (canvas.width / window.devicePixelRatio));
+			    vector.y = Math.round((0.5 - vector.y / 2) * (canvas.height / window.devicePixelRatio));
+
+			    annotation.style.top = `${vector.y}px`;
+			    annotation.style.left = `${vector.x}px`;
+			    annotation.style.opacity = spriteBehindObject ? 0.25 : 1;
+			}
+
+			function vertexShader() {
+			  	return `
+				    varying vec3 vUv;
+
+				    void main() {
+				      vUv = position; 
+
+				      vec4 modelViewPosition = modelViewMatrix * vec4(position, 1.0);
+				      gl_Position = projectionMatrix * modelViewPosition; 
+				    }
+		  		`
+			}
+
+			function fragmentShader() {
+				return `
+			      uniform vec3 colorA; 
+			      uniform vec3 colorB;
+			      varying vec3 vUv;
+				  uniform float w;
+				  
+			      void main() {
+			        gl_FragColor = vec4(mix(colorB,colorA,(vUv.x-w+vUv.x)/(w+w)),1.0);
+			      }
+			  	`
+			}
+
+			function componentToHex(c) {
+			  var hex = c.toString(16);
+			  return hex.length == 1 ? "0" + hex : hex;
+			}
+	</script>
+</body>
+</html>
+	
