@@ -69,7 +69,7 @@
 			let scene;
 			let renderer;
 			let sprite;
-			let mesh;
+			let mesh, mesh1;
 			let spriteBehindObject;
 			const annotation = document.querySelector(".annotation");
 
@@ -134,7 +134,7 @@
 				var loader = new THREE.GLTFLoader();
 
 				// Load a glTF resource
-				/*loader.load(
+				loader.load(
 					// resource URL
 					'models/myPipe.gltf',
 					// called when the resource is loaded
@@ -157,13 +157,13 @@
 					function ( error ) {
 						console.log( 'An error happened' );
 					}
-				);*/
+				);
 
 				// Mesh
 
 			    const cubeGeometry = new THREE.BoxGeometry(500, 500, 500);
 
-			    mesh = new THREE.Mesh(
+			    mesh1 = new THREE.Mesh(
 			        cubeGeometry,
 			        new THREE.MeshPhongMaterial({
 			            color: 0x156289,
@@ -172,26 +172,9 @@
 			            shading: THREE.FlatShading
 			        })
 			    );
-			    scene.add(mesh);
-
-				// Sprite
-			    const numberTexture = new THREE.CanvasTexture(
-		        	document.querySelector("#number")
-			    );
-
-			    const spriteMaterial = new THREE.SpriteMaterial({
-			        map: numberTexture,
-			        alphaTest: 0.5,
-			        transparent: true,
-			        depthTest: false,
-			        depthWrite: false
-			    });
-
-			    sprite = new THREE.Sprite(spriteMaterial);
-			    sprite.position.set(600, 400, 120);
-			    sprite.scale.set(60, 60, 1);
-
-			    scene.add(sprite);
+				mesh1.position.set(122, 233, 222);
+				
+			    scene.add(mesh1);
 
 				raycaster = new THREE.Raycaster();
 
@@ -238,35 +221,45 @@
 
 			function render() {
 				renderer.render(scene, camera);
-				updateAnnotationOpacity();
+				//updateAnnotationOpacity();
     			updateScreenPosition();
 
 				raycaster.setFromCamera( mouse, camera );
 
 				var intersects = raycaster.intersectObjects( scene.children );
 
-				if ( intersects.length > 0 ) {
+				// INTERSECTED = the object in the scene currently closest to the camera 
+				//      and intersected by the Ray projected from the mouse position    
 
-					if ( INTERSECTED != intersects[ 0 ].object ) {
-
-						if ( INTERSECTED ) INTERSECTED.material.emissive.setHex( INTERSECTED.currentHex );
-
-						INTERSECTED = intersects[ 0 ].object;
-						INTERSECTED.currentHex = INTERSECTED.material.emissive.getHex();
-						INTERSECTED.material.emissive.setHex( 0xff0000 );
-
-					}
-
-				} else {
-
-					if ( INTERSECTED ) INTERSECTED.material.emissive.setHex( INTERSECTED.currentHex );
-
-					INTERSECTED = null;
-
+				// if there is one (or more) intersections
+				if ( intersects.length > 0 )
+				{
+				    // if the closest object intersected is not the currently stored intersection object
+				    if ( intersects[ 0 ].object != INTERSECTED )
+				    {
+				        // restore previous intersection object (if it exists) to its original color
+				        if ( INTERSECTED )
+				            INTERSECTED.material.color.setHex( INTERSECTED.currentHex );
+				        // store reference to closest object as current intersection object
+				        INTERSECTED = intersects[ 0 ].object;
+				        // store color of closest object (for later restoration)
+				        INTERSECTED.currentHex = INTERSECTED.material.color.getHex();
+				        // set a new color for closest object
+				        INTERSECTED.material.color.setHex( 0xffff00 );
+				    }
 				}
+				else // there are no intersections
+				{
+				    // restore previous intersection object (if it exists) to its original color
+				    if ( INTERSECTED )
+				        INTERSECTED.material.color.setHex( INTERSECTED.currentHex );
+				    // remove previous intersection object reference
+				    //     by setting current intersection object to "nothing"
+				    INTERSECTED = null;
+}
 			}
 
-			function updateAnnotationOpacity() {
+			/*function updateAnnotationOpacity() {
 			    const meshDistance = camera.position.distanceTo(mesh.position);
 			    const spriteDistance = camera.position.distanceTo(sprite.position);
 			    spriteBehindObject = spriteDistance > meshDistance;
@@ -275,7 +268,7 @@
 			    // Do you want a number that changes size according to its position?
 			    // Comment out the following line and the `::before` pseudo-element.
 			    sprite.material.opacity = 0;
-			}
+			}*/
 
 			function updateScreenPosition() {
 			    const vector = new THREE.Vector3(600, 400, 120);
@@ -286,9 +279,9 @@
 			    vector.x = Math.round((0.5 + vector.x / 2) * (canvas.width / window.devicePixelRatio));
 			    vector.y = Math.round((0.5 - vector.y / 2) * (canvas.height / window.devicePixelRatio));
 
-			    annotation.style.top = `${vector.y}px`;
+			    /*annotation.style.top = `${vector.y}px`;
 			    annotation.style.left = `${vector.x}px`;
-			    annotation.style.opacity = spriteBehindObject ? 0.25 : 1;
+			    annotation.style.opacity = spriteBehindObject ? 0.25 : 1;*/
 			}
 	</script>
 </body>
