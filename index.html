@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <title>3D Modelling using three.js</title>
+
         <!-- CSS Stylesheets-->
         <!-- Custom stylesheet-->
         <link rel="stylesheet" href="css/style.css">
@@ -8,13 +10,27 @@
 
     <body>
         <!-- Main body START -->
-
+        <canvas id="mainCanvas"></canvas>
         
         <!-- Main body END-->
+
         <!-- JavaScript scripts -->
-        
+        <!-- Three.js r106 -->
+        <script src="js/three.js" type="text/JavaScript"></script>
 
         <!-- Custom JS script -->
         <script src="js/script.js" type="text/JavaScript"></script>
+
+        <!-- Inline js-->
+        <script type="text/JavaScript">
+            // run() function 
+            function run() {
+                init();
+                animate();
+            }
+
+            // Calls run() function when window is loaded.
+            window.addEventListener('load', run());
+        </script>
     </body>
 </html>
