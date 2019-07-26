@@ -141,7 +141,7 @@
 					function ( gltf ) {
 						gltf.scene.traverse( function ( child ) {
 							if ( child.isMesh ) {
-							mesh = gltf.scene;
+							mesh = child;
 							mesh.scale.set( 210, 350, 240 );
 							mesh.rotation.x = 1.4;
 							mesh.rotation.y = 0.1;
