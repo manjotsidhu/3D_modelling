@@ -1,0 +1,39 @@
+<html>
+    <head>
+        <title>Retrieving Realtime data from Firebase</title>
+    </head>
+    <body>
+
+        <!-- The core Firebase JS SDK is always required and must be listed first -->
+        <script src="https://www.gstatic.com/firebasejs/6.3.2/firebase-app.js"></script>
+
+        <script src="https://www.gstatic.com/firebasejs/3.3.2/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/3.3.2/firebase-database.js"></script>
+
+        <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "",
+            authDomain: "d-modelling-9755e-4496d.firebaseapp.com",
+            databaseURL: "https://d-modelling-9755e-4496d.firebaseio.com",
+            projectId: "d-modelling-9755e",
+            storageBucket: "",
+            messagingSenderId: "977607199046",
+            appId: "1:977607199046:web:c40c6e6b50a1ded4"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+
+        // Get a reference to the database service
+        var database = firebase.database(); 
+
+        var ref = firebase.database().ref("Test/test");
+
+        ref.on("value", function(snapshot) {
+            console.log(snapshot.val());
+        }, function (error) {
+            console.log("Error: " + error.code);
+        });
+        </script>
+    </body>
+</html>
