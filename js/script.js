@@ -20,9 +20,7 @@ function init() {
 	camera = new THREE.PerspectiveCamera(85, window.innerWidth / window.innerHeight, 0.1, 2000);
 	camera.position.set( 3, 1.5, 0.5);
 
-	scene = new THREE.Scene();
-
-	renderer = new THREE.WebGLRenderer({canvas,
+    renderer = new THREE.WebGLRenderer({canvas,
 		antialias: true});
 	renderer.setClearColor("#A9A9A9");
 	renderer.setSize(window.innerWidth, window.innerHeight);
@@ -42,29 +40,31 @@ function init() {
 
     loader.load( '../models/MODEL_IR_ORIGIN1.gltf', function ( gltf ) {
 
-        var compressor = gltf.scene;
-        compressor.scale.set(1,1,1);
-        var compressor_material = new THREE.MeshBasicMaterial({map: new THREE.TextureLoader().load("../textures/Fencing_Diamond_Mesh.png"), side: THREE.DoubleSide});
-        scene.add( compressor );
+        scene = gltf.scene;
+        //var compressor_material = new THREE.MeshBasicMaterial({map: new THREE.TextureLoader().load("../textures/Fencing_Diamond_Mesh.png"), side: THREE.DoubleSide});
+        //scene.add(compressor_material)
+        //compressor.scale.set(1,1,1);
+        //
+        //scene.add( compressor );
+
+        var spotLight = new THREE.SpotLight(0xFFFFFF,1);
+        spotLight.position.set(30,40,20);
+        scene.add(spotLight);
+
+        var spotLight1 = new THREE.SpotLight(0xFFFFFF,1);
+        spotLight1.position.set(-30,-40,-20);
+        scene.add(spotLight1);
+
+        var ambientLight = new THREE.AmbientLight(0xFFFFFF,0.4);
+        scene.add(ambientLight);
+
         render();
 
     }, undefined, function ( error ) {
 
         console.error( error );
 
-    } );
-
-	var spotLight = new THREE.SpotLight(0xFFFFFF,1);
-	spotLight.position.set(30,40,20);
-	scene.add(spotLight);
-
-	var spotLight1 = new THREE.SpotLight(0xFFFFFF,1);
-	spotLight1.position.set(-30,-40,-20);
-	scene.add(spotLight1);
-
-	var ambientLight = new THREE.AmbientLight(0xFFFFFF,0.4);
-	scene.add(ambientLight);
-	
+    } );	
 }
 
 // animate function renders everytime the screen is refreshed to produce animation
