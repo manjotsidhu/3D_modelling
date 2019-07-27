@@ -15,6 +15,15 @@ let scene;
 // THREE.WebGLRenderer
 let renderer;
 
+// Top Cylinder Mesh
+let topCylinderMesh;
+ 
+// Left Cylinder Mesh
+let leftCylinderMesh;
+
+// Right Cylinder Mesh
+let rightCylinderMesh;
+
 // init function loads the startup scripts on window load
 function init() {
 	camera = new THREE.PerspectiveCamera(85, window.innerWidth / window.innerHeight, 0.1, 2000);
@@ -41,11 +50,42 @@ function init() {
     loader.load( '../models/MODEL_IR_ORIGIN1.gltf', function ( gltf ) {
 
         scene = gltf.scene;
-        //var compressor_material = new THREE.MeshBasicMaterial({map: new THREE.TextureLoader().load("../textures/Fencing_Diamond_Mesh.png"), side: THREE.DoubleSide});
-        //scene.add(compressor_material)
-        //compressor.scale.set(1,1,1);
-        //
-        //scene.add( compressor );
+
+        // group_90 of blender
+        topCylinderMesh = scene.children[7].children[43].children[48];
+
+        // Testing material for top cylinder
+        topCylinderMeshMaterial = new THREE.MeshPhongMaterial({
+            color: "red",
+            emissive: 0x072534,
+            side: THREE.DoubleSide,
+            shading: THREE.FlatShading
+        });
+        topCylinderMesh.material = topCylinderMeshMaterial;
+
+        // group_114 of blender
+        leftCylinderMesh = scene.children[7].children[44].children[42];
+
+        // Testing material for top cylinder
+        leftCylinderMeshMaterial = new THREE.MeshPhongMaterial({
+            color: "green",
+            emissive: 0x072534,
+            side: THREE.DoubleSide,
+            shading: THREE.FlatShading
+        });
+        leftCylinderMesh.material = leftCylinderMeshMaterial;
+
+        // group_300 of blender
+        rightCylinderMesh = scene.children[7].children[578];
+
+        // Testing material for top cylinder
+        rightCylinderMeshMaterial = new THREE.MeshPhongMaterial({
+            color: "blue",
+            emissive: 0x072534,
+            side: THREE.DoubleSide,
+            shading: THREE.FlatShading
+        });
+        rightCylinderMesh.material = rightCylinderMeshMaterial;
 
         var spotLight = new THREE.SpotLight(0xFFFFFF,1);
         spotLight.position.set(30,40,20);
