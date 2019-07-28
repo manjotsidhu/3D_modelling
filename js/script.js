@@ -23,8 +23,11 @@ var mouse = new THREE.Vector2(), INTERSECTED, raycaster;
 
 // init function loads the startup scripts on window load
 function init() {
+    
 	camera = new THREE.PerspectiveCamera(85, window.innerWidth / window.innerHeight, 0.1, 2000);
-	camera.position.set( 3, 1.5, 0.5);
+    camera.position.set( 3, 1.5, 0.5);
+    
+    scene = new THREE.Scene();
 
     renderer = new THREE.WebGLRenderer({canvas,
 		antialias: true});
@@ -36,24 +39,36 @@ function init() {
 	controls.minDistance = 0;
 	controls.maxDistance = 100000;
 
-	document.addEventListener('resize', function(){
-			renderer.setSize(window.innerWidth, window.innerHeight);
-			camera.aspect = window.innerWidth / window.innerHeight;
-			camera.updateProjectionMatrix();
-    });
+    var spotLight = new THREE.SpotLight(0xFFFFFF,1);
+    spotLight.position.set(30,40,20);
+    scene.add(spotLight);
+
+    var spotLight1 = new THREE.SpotLight(0xFFFFFF,1);
+    spotLight1.position.set(-30,-40,-20);
+    scene.add(spotLight1);
+
+    var ambientLight = new THREE.AmbientLight(0xFFFFFF,0.4);
+    scene.add(ambientLight);
     
+
+	window.addEventListener('resize', function(){
+		renderer.setSize(window.innerWidth, window.innerHeight);
+		camera.aspect = window.innerWidth / window.innerHeight;
+		camera.updateProjectionMatrix();
+    });    
+
     raycaster = new THREE.Raycaster();
+    document.addEventListener( 'mousedown', onDocumentMouseDown, false );
 
     var loader = new THREE.GLTFLoader();
     
-    document.addEventListener( 'mousedown', onDocumentMouseDown, false );
-
     loader.load( '../models/MODEL_IR_ORIGIN1.gltf', function ( gltf ) {
 
-        scene = gltf.scene;
+        const root = gltf.scene;
+        scene.add(root);
 
         // group_90 of blender
-        comp1Mesh = scene.children[7].children[43].children[48];
+        comp1Mesh = root.children[7].children[43].children[48];
 
         // Testing material
         comp1Mesh.material = new THREE.MeshPhongMaterial({
@@ -64,7 +79,7 @@ function init() {
         });
 
         // group_114 of blender
-        comp2Mesh = scene.children[7].children[44].children[42];
+        comp2Mesh = root.children[7].children[44].children[42];
 
         // Testing material
         comp2Mesh.material = new THREE.MeshPhongMaterial({
@@ -75,7 +90,7 @@ function init() {
         });
 
         // group_300 of blender
-        comp3Mesh = scene.children[7].children[578];
+        comp3Mesh = root.children[7].children[578];
 
         // Testing material
         comp3Mesh.material = new THREE.MeshPhongMaterial({
@@ -86,7 +101,7 @@ function init() {
         });
 
         // group_17.02 (17002) of blender
-        comp4Mesh = scene.children[7].children[458];
+        comp4Mesh = root.children[7].children[458];
 
         // Testing material
         comp4Mesh.material = new THREE.MeshPhongMaterial({
@@ -97,7 +112,7 @@ function init() {
         });
 
         // group_37 of blender
-        comp5Mesh = scene.children[7].children[469];
+        comp5Mesh = root.children[7].children[469];
 
         // Testing material
         comp5Mesh.material = new THREE.MeshPhongMaterial({
@@ -108,7 +123,7 @@ function init() {
         });
 
         // group_36 of blender
-        comp6Mesh = scene.children[7].children[468];
+        comp6Mesh = root.children[7].children[468];
 
         // Testing material
         comp6Mesh.material = new THREE.MeshPhongMaterial({
@@ -119,7 +134,7 @@ function init() {
         });
 
         // group_132 of blender
-        comp7Mesh = scene.children[7].children[530];
+        comp7Mesh = root.children[7].children[530];
         
         //Testing material
         comp7Mesh.material = new THREE.MeshPhongMaterial({
@@ -130,7 +145,7 @@ function init() {
         });
 
         // group_235 of blender
-        comp8Mesh = scene.children[7].children[627];
+        comp8Mesh = root.children[7].children[627];
         
         //Testing material
         comp8Mesh.material = new THREE.MeshPhongMaterial({
@@ -141,7 +156,7 @@ function init() {
         });
 
         // group_228.01 (22801) of blender
-        comp9Mesh = scene.children[7].children[619];
+        comp9Mesh = root.children[7].children[619];
         
         //Testing material
         comp9Mesh.material = new THREE.MeshPhongMaterial({
@@ -151,29 +166,25 @@ function init() {
             shading: THREE.FlatShading
         });
 
-        var spotLight = new THREE.SpotLight(0xFFFFFF,1);
-        spotLight.position.set(30,40,20);
-        scene.add(spotLight);
-
-        var spotLight1 = new THREE.SpotLight(0xFFFFFF,1);
-        spotLight1.position.set(-30,-40,-20);
-        scene.add(spotLight1);
-
-        var ambientLight = new THREE.AmbientLight(0xFFFFFF,0.4);
-        scene.add(ambientLight);
-
         render();
 
     }, undefined, function ( error ) {
 
         console.error( error );
 
-    } );	
+    } );
+    
+    var axesHelper = new THREE.AxesHelper( 1000 );
+    scene.add( axesHelper );
+    
 }
 
 // animate function renders everytime the screen is refreshed to produce animation
 function animate() {
     // TODO
+    requestAnimationFrame( animate );
+	controls.update();
+	//annotation.hidden(false);
 }
 
 // render function will render THREE.js scene
