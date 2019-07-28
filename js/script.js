@@ -24,6 +24,9 @@ let leftCylinderMesh;
 // Right Cylinder Mesh
 let rightCylinderMesh;
 
+// Mouse, Intersected , Raycaster
+var mouse = new THREE.Vector2(), INTERSECTED, raycaster;
+
 // init function loads the startup scripts on window load
 function init() {
 	camera = new THREE.PerspectiveCamera(85, window.innerWidth / window.innerHeight, 0.1, 2000);
@@ -43,9 +46,13 @@ function init() {
 			renderer.setSize(window.innerWidth, window.innerHeight);
 			camera.aspect = window.innerWidth / window.innerHeight;
 			camera.updateProjectionMatrix();
-	});
+    });
+    
+    raycaster = new THREE.Raycaster();
 
-	var loader = new THREE.GLTFLoader();
+    var loader = new THREE.GLTFLoader();
+    
+    document.addEventListener( 'mousedown', onDocumentMouseDown, false );
 
     loader.load( '../models/MODEL_IR_ORIGIN1.gltf', function ( gltf ) {
 
