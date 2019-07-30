@@ -1,4 +1,3 @@
-
 // Mouse Down will enable click function
 function onDocumentMouseDown( event ){
 
@@ -9,7 +8,7 @@ function onDocumentMouseDown( event ){
 
 	raycaster.setFromCamera( mouse, camera );
 
-    var intersects = raycaster.intersectObjects( scene.children );
+    var intersects = raycaster.intersectObjects( comp1Mesh, comp2Mesh, comp3Mesh, comp4Mesh, comp5Mesh, comp6Mesh, comp7Mesh, comp8Mesh );
     
     var color = (Math.random() * 0xffffff);
 
