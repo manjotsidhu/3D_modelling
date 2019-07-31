@@ -173,7 +173,8 @@ function init() {
 
     } );
     
-    var axesHelper = new THREE.AxesHelper( 1000 );
+    //Axes Helper
+    var axesHelper = new THREE.AxesHelper( 3 );
     scene.add( axesHelper );
     
 }
