@@ -1,48 +1,48 @@
 /* Contains implementation of gradient properties to components */
 
 var comp1Uniforms = {
-    colorA: {type: 'vec3', value: new THREE.Color("#FF0000")},
-    colorB: {type: 'vec3', value: new THREE.Color("#0000FF")}
+    colorA: {type: 'vec3', value: new THREE.Color("#0000FF")},
+    colorB: {type: 'vec3', value: new THREE.Color("#FF0000")}
 };
 
 var comp2Uniforms = {
-    colorA: {type: 'vec3', value: new THREE.Color("#FF0000")},
-    colorB: {type: 'vec3', value: new THREE.Color("#0000FF")},
+    colorA: {type: 'vec3', value: new THREE.Color("#0000FF")},
+    colorB: {type: 'vec3', value: new THREE.Color("#FF0000")},
 };
 
 var comp3Uniforms = {
-    colorA: {type: 'vec3', value: new THREE.Color("#FF0000")},
-    colorB: {type: 'vec3', value: new THREE.Color("#0000FF")},
+    colorA: {type: 'vec3', value: new THREE.Color("#0000FF")},
+    colorB: {type: 'vec3', value: new THREE.Color("#FF0000")},
 };
 
 var comp4Uniforms = {
-    colorA: {type: 'vec3', value: new THREE.Color("#FF0000")},
-    colorB: {type: 'vec3', value: new THREE.Color("#0000FF")},
+    colorA: {type: 'vec3', value: new THREE.Color("#0000FF")},
+    colorB: {type: 'vec3', value: new THREE.Color("#FF0000")},
 };
 
 var comp5Uniforms = {
-    colorA: {type: 'vec3', value: new THREE.Color("#FF0000")},
-    colorB: {type: 'vec3', value: new THREE.Color("#0000FF")},
+    colorA: {type: 'vec3', value: new THREE.Color("#0000FF")},
+    colorB: {type: 'vec3', value: new THREE.Color("#FF0000")},
 };
 
 var comp6Uniforms = {
-    colorA: {type: 'vec3', value: new THREE.Color("#FF0000")},
-    colorB: {type: 'vec3', value: new THREE.Color("#0000FF")},
+    colorA: {type: 'vec3', value: new THREE.Color("#0000FF")},
+    colorB: {type: 'vec3', value: new THREE.Color("#FF0000")},
 };
 
 var comp7Uniforms = {
-    colorA: {type: 'vec3', value: new THREE.Color("#FF0000")},
-    colorB: {type: 'vec3', value: new THREE.Color("#0000FF")},
+    colorA: {type: 'vec3', value: new THREE.Color("#0000FF")},
+    colorB: {type: 'vec3', value: new THREE.Color("#FF0000")},
 };
 
 var comp8Uniforms = {
-    colorA: {type: 'vec3', value: new THREE.Color("#FF0000")},
-    colorB: {type: 'vec3', value: new THREE.Color("#0000FF")},
+    colorA: {type: 'vec3', value: new THREE.Color("#0000FF")},
+    colorB: {type: 'vec3', value: new THREE.Color("#FF0000")},
 };
 
 var comp9Uniforms = {
-    colorA: {type: 'vec3', value: new THREE.Color("#FF0000")},
-    colorB: {type: 'vec3', value: new THREE.Color("#0000FF")},
+    colorA: {type: 'vec3', value: new THREE.Color("#0000FF")},
+    colorB: {type: 'vec3', value: new THREE.Color("#FF0000")},
 };
 
 var compGroup = [comp1Uniforms, comp2Uniforms, comp3Uniforms, comp4Uniforms, comp5Uniforms, comp6Uniforms, comp7Uniforms, comp8Uniforms, comp9Uniforms];

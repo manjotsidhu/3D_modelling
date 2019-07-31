@@ -191,4 +191,5 @@ function render() {
     // TODO
     requestAnimationFrame(render);
     renderer.render(scene, camera);
+    updateScreenPosition();
 }
