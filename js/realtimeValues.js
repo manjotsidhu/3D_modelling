@@ -9,7 +9,7 @@ var database = firebase.database();
 // Comp1 colors reference to database
 var comp1Ref = firebase.database().ref("IR-Compressor/comp1");
 comp1Ref.on("value", function(snapshot) {
-    setCompUniforms(1, snapshot.val().value1, snapshot.val().value2);
+    setCompValues(1, snapshot.val().value1, snapshot.val().value2);
 }, function (error) {
     console.log("Error: " + error.code);
 });
@@ -17,7 +17,7 @@ comp1Ref.on("value", function(snapshot) {
 // Comp2 colors reference to database
 var comp2Ref = firebase.database().ref("IR-Compressor/comp2");
 comp2Ref.on("value", function(snapshot) {
-    setCompUniforms(2, snapshot.val().value1, snapshot.val().value2);
+    setCompValues(2, snapshot.val().value1, snapshot.val().value2);
 }, function (error) {
     console.log("Error: " + error.code);
 });
@@ -25,7 +25,7 @@ comp2Ref.on("value", function(snapshot) {
 // Comp3 colors reference to database
 var comp3Ref = firebase.database().ref("IR-Compressor/comp3");
 comp3Ref.on("value", function(snapshot) {
-    setCompUniforms(3, snapshot.val().value1, snapshot.val().value2);
+    setCompValues(3, snapshot.val().value1, snapshot.val().value2);
 }, function (error) {
     console.log("Error: " + error.code);
 });
@@ -33,7 +33,7 @@ comp3Ref.on("value", function(snapshot) {
 // Comp4 colors reference to database
 var comp4Ref = firebase.database().ref("IR-Compressor/comp4");
 comp4Ref.on("value", function(snapshot) {
-    setCompUniforms(4, snapshot.val().value1, snapshot.val().value2);
+    setCompValues(4, snapshot.val().value1, snapshot.val().value2);
 }, function (error) {
     console.log("Error: " + error.code);
 });
@@ -41,7 +41,7 @@ comp4Ref.on("value", function(snapshot) {
 // Comp5 colors reference to database
 var comp5Ref = firebase.database().ref("IR-Compressor/comp5");
 comp5Ref.on("value", function(snapshot) {
-    setCompUniforms(5, snapshot.val().value1, snapshot.val().value2);
+    setCompValues(5, snapshot.val().value1, snapshot.val().value2);
 }, function (error) {
     console.log("Error: " + error.code);
 });
@@ -49,7 +49,7 @@ comp5Ref.on("value", function(snapshot) {
 // Comp6 colors reference to database
 var comp6Ref = firebase.database().ref("IR-Compressor/comp6");
 comp6Ref.on("value", function(snapshot) {
-    setCompUniforms(6, snapshot.val().value1, snapshot.val().value2);
+    setCompValues(6, snapshot.val().value1, snapshot.val().value2);
 }, function (error) {
     console.log("Error: " + error.code);
 });
@@ -57,7 +57,7 @@ comp6Ref.on("value", function(snapshot) {
 // Comp7 colors reference to database
 var comp7Ref = firebase.database().ref("IR-Compressor/comp7");
 comp7Ref.on("value", function(snapshot) {
-    setCompUniforms(7, snapshot.val().value1, snapshot.val().value2);
+    setCompValues(7, snapshot.val().value1, snapshot.val().value2);
 }, function (error) {
     console.log("Error: " + error.code);
 });
@@ -65,7 +65,7 @@ comp7Ref.on("value", function(snapshot) {
 // Comp1 colors reference to database
 var comp8Ref = firebase.database().ref("IR-Compressor/comp8");
 comp8Ref.on("value", function(snapshot) {
-    setCompUniforms(8, snapshot.val().value1, snapshot.val().value2);
+    setCompValues(8, snapshot.val().value1, snapshot.val().value2);
 }, function (error) {
     console.log("Error: " + error.code);
 });
@@ -73,7 +73,7 @@ comp8Ref.on("value", function(snapshot) {
 // Comp1 colors reference to database
 var comp9Ref = firebase.database().ref("IR-Compressor/comp9");
 comp9Ref.on("value", function(snapshot) {
-    setCompUniforms(9, snapshot.val().value1, snapshot.val().value2);
+    setCompValues(9, snapshot.val().value1, snapshot.val().value2);
 }, function (error) {
     console.log("Error: " + error.code);
 });

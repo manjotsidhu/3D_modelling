@@ -177,3 +177,9 @@ function updateScreenPosition() {
     anComp8Update();
     anComp9Update();
 }
+
+// Sets value of annotations by passing component number, left end temp and right end temp
+function setAnnotationValues(compNo, lT, rT) {
+    document.getElementById("anComp" + compNo + "LT").textContent = lT;
+    document.getElementById("anComp" + compNo + "RT").textContent = rT;
+}

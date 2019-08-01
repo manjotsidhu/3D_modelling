@@ -53,3 +53,8 @@ function setCompUniforms(compNo, colorA, colorB) {
     compGroup[compNo-1].colorB.value.setRGB(colorB/100, 0, (100-colorB)/100);
 }
 
+// Sets Values for component gradient and as well as of annotation
+function setCompValues(compNo, leftTemp, rightTemp) {
+    setCompUniforms(compNo, leftTemp, rightTemp);
+    setAnnotationValues(compNo, leftTemp, rightTemp);
+}
