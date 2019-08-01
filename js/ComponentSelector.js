@@ -41,7 +41,7 @@ function onDocumentMouseDown( event ){
 }
 
 function anComp1Update() {
-    const vector = new THREE.Vector3(0, 1.7, -0.85);
+    const vector = new THREE.Vector3(0.5, 1.7, -2.0);
     const canvas = renderer.domElement;
 
     vector.project(camera);
@@ -55,7 +55,7 @@ function anComp1Update() {
 }
 
 function anComp2Update() {
-    const vector = new THREE.Vector3(0.2, 0.85, -0.85);
+    const vector = new THREE.Vector3(0.2, -0.25, -1.5);
     const canvas = renderer.domElement;
 
     vector.project(camera);
@@ -69,7 +69,7 @@ function anComp2Update() {
 }
 
 function anComp3Update() {
-    const vector = new THREE.Vector3(-0.2, 0.85, -0.85);
+    const vector = new THREE.Vector3(-0.2, -0.2, -0.85);
     const canvas = renderer.domElement;
 
     vector.project(camera);
@@ -83,7 +83,7 @@ function anComp3Update() {
 }
 
 function anComp4Update() {
-    const vector = new THREE.Vector3(0, 1.5, 1.5);
+    const vector = new THREE.Vector3(0, 0.25, 2.2);
     const canvas = renderer.domElement;
 
     vector.project(camera);
@@ -97,7 +97,7 @@ function anComp4Update() {
 }
 
 function anComp5Update() {
-    const vector = new THREE.Vector3(0, 2, 2.2);
+    const vector = new THREE.Vector3(0, 2, 1.2);
     const canvas = renderer.domElement;
 
     vector.project(camera);
@@ -111,7 +111,7 @@ function anComp5Update() {
 }
 
 function anComp6Update() {
-    const vector = new THREE.Vector3(0, 2, 0.6);
+    const vector = new THREE.Vector3(0, 2, 1.6);
     const canvas = renderer.domElement;
 
     vector.project(camera);
@@ -125,7 +125,7 @@ function anComp6Update() {
 }
 
 function anComp7Update() {
-    const vector = new THREE.Vector3(0, 2, 0);
+    const vector = new THREE.Vector3(0, 2.2, 0);
     const canvas = renderer.domElement;
 
     vector.project(camera);
@@ -139,7 +139,7 @@ function anComp7Update() {
 }
 
 function anComp8Update() {
-    const vector = new THREE.Vector3(-1, 0.4, -1);
+    const vector = new THREE.Vector3(-1, 0.4, -1.8);
     const canvas = renderer.domElement;
 
     vector.project(camera);
@@ -153,7 +153,7 @@ function anComp8Update() {
 }
 
 function anComp9Update() {
-    const vector = new THREE.Vector3(1, 0.4, -0.75);
+    const vector = new THREE.Vector3(-1, 0, 0.45);
     const canvas = renderer.domElement;
 
     vector.project(camera);
