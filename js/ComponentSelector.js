@@ -23,7 +23,6 @@ function onDocumentMouseDown( event ){
             case comp8Mesh : m = 8; break;
             case comp9Mesh : m = 9; break;
         }
-        console.log(m);
         
         for (var i = 1; i <= 9; i++) {
             if (i == m) 
@@ -34,7 +33,7 @@ function onDocumentMouseDown( event ){
     }
     else
     {
-        for(var i=1; i<=9; i++){
+        for(var i=1; i<=9; i++) {
             document.getElementById("anComp"+i).style.display = "none";
         }
     }
