@@ -30,6 +30,11 @@ javascript:(function(){
     var script=document.createElement('script');
     script.onload=function(){
         var stats=new Stats();
+        stats.dom.style.position = 'absolute';
+        stats.dom.style.right = '0';
+        stats.dom.style.bottom = '0';
+        stats.dom.style.top = 'auto';
+        stats.dom.style.left = 'auto';
         document.body.appendChild(stats.dom);
         requestAnimationFrame(function loop(){
             stats.update();
@@ -202,13 +207,6 @@ function init() {
 function onMouseDown(){
     isMouseDown = true;
 }
-
-/* Stats like fps, ms, etc
-var stats = new Stats();
-stats.showPanel( 1 ); // 0: fps, 1: ms, 2: mb, 3+: custom
-stats.dom.style.position = 'relative';
-stats.dom.style.float = 'left';
-document.body.appendChild( stats.dom ); */
 
 // animate function renders everytime the screen is refreshed to produce animation
 function animate() {
