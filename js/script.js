@@ -25,6 +25,20 @@ var angle = 0;
 var radius = 3.4;
 var isMouseDown = false; 
 
+// Stats Monitor
+javascript:(function(){
+    var script=document.createElement('script');
+    script.onload=function(){
+        var stats=new Stats();
+        document.body.appendChild(stats.dom);
+        requestAnimationFrame(function loop(){
+            stats.update();
+            requestAnimationFrame(loop)
+        });
+    };
+    script.src='//mrdoob.github.io/stats.js/build/stats.min.js';
+    document.head.appendChild(script);})()
+
 // init function loads the startup scripts on window load
 function init() {
 
@@ -189,8 +203,17 @@ function onMouseDown(){
     isMouseDown = true;
 }
 
+/* Stats like fps, ms, etc
+var stats = new Stats();
+stats.showPanel( 1 ); // 0: fps, 1: ms, 2: mb, 3+: custom
+stats.dom.style.position = 'relative';
+stats.dom.style.float = 'left';
+document.body.appendChild( stats.dom ); */
+
 // animate function renders everytime the screen is refreshed to produce animation
 function animate() {
+
+    //stats.begin();
     if(!isMouseDown){
         camera.position.x = radius * Math.cos( angle );  
         camera.position.z = radius * Math.sin( angle );
@@ -199,7 +222,9 @@ function animate() {
     
     requestAnimationFrame( animate );
 	controls.update();
-	//annotation.hidden(false);
+    //annotation.hidden(false);
+    //stats.end();
+
 }
 
 // render function will render THREE.js scene
