@@ -53,7 +53,7 @@ function init() {
 
     // Initialize Renderer
     renderer = new THREE.WebGLRenderer({canvas, antialias: true});
-	renderer.setClearColor("#A9A9A9");
+	//renderer.setClearColor("#A9A9A9");
 	renderer.setSize(window.innerWidth, window.innerHeight);
 	document.body.appendChild(renderer.domElement);
 
@@ -196,6 +196,31 @@ function init() {
     //Axes Helper
     var axesHelper = new THREE.AxesHelper( 3 );
     scene.add( axesHelper );
+
+    //Cube Map
+    let materialArray = [];
+    let texture_ft = new THREE.TextureLoader().load( 'img/front.png');
+    let texture_bk = new THREE.TextureLoader().load( 'img/back.png');
+    let texture_up = new THREE.TextureLoader().load( 'img/top.png');
+    let texture_dn = new THREE.TextureLoader().load( 'img/bottom.png');
+    let texture_rt = new THREE.TextureLoader().load( 'img/left.png');
+    let texture_lf = new THREE.TextureLoader().load( 'img/right.png');
+      
+    materialArray.push(new THREE.MeshBasicMaterial( { map: texture_ft }));
+    materialArray.push(new THREE.MeshBasicMaterial( { map: texture_bk }));
+    materialArray.push(new THREE.MeshBasicMaterial( { map: texture_up }));
+    materialArray.push(new THREE.MeshBasicMaterial( { map: texture_dn }));
+    materialArray.push(new THREE.MeshBasicMaterial( { map: texture_rt }));
+    materialArray.push(new THREE.MeshBasicMaterial( { map: texture_lf }));
+
+    for (let i = 0; i < 6; i++)
+       materialArray[i].side = THREE.BackSide;
+    let skyboxGeo = new THREE.BoxGeometry( 100, 100, 100);
+    let skybox = new THREE.Mesh( skyboxGeo, materialArray );
+    skybox.position.y += 50;
+    scene.add( skybox );  
+    animate();
+
     
 }
 
