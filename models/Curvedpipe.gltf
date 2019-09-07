@@ -1,0 +1,126 @@
+{
+    "accessors" : [
+        {
+            "bufferView" : 0,
+            "componentType" : 5123,
+            "count" : 13812,
+            "max" : [
+                2577
+            ],
+            "min" : [
+                0
+            ],
+            "type" : "SCALAR"
+        },
+        {
+            "bufferView" : 1,
+            "componentType" : 5126,
+            "count" : 2578,
+            "max" : [
+                7.13755989074707,
+                4.056875228881836,
+                0.26014265418052673
+            ],
+            "min" : [
+                -4.75070333480835,
+                -0.6496872901916504,
+                -0.2579374611377716
+            ],
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 2,
+            "componentType" : 5126,
+            "count" : 2578,
+            "max" : [
+                0.9999253749847412,
+                0.999786376953125,
+                0.999969482421875
+            ],
+            "min" : [
+                -0.8526261448860168,
+                -0.999786376953125,
+                -0.999969482421875
+            ],
+            "type" : "VEC3"
+        }
+    ],
+    "asset" : {
+        "generator" : "Khronos Blender glTF 2.0 exporter",
+        "version" : "2.0"
+    },
+    "bufferViews" : [
+        {
+            "buffer" : 0,
+            "byteLength" : 27624,
+            "byteOffset" : 0,
+            "target" : 34963
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 30936,
+            "byteOffset" : 27624,
+            "target" : 34962
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 30936,
+            "byteOffset" : 58560,
+            "target" : 34962
+        }
+    ],
+    "buffers" : [
+        {
+            "byteLength" : 89496,
+            "uri" : "Curvedpipe.bin"
+        }
+    ],
+    "meshes" : [
+        {
+            "name" : "NurbsPath.002",
+            "primitives" : [
+                {
+                    "attributes" : {
+                        "NORMAL" : 2,
+                        "POSITION" : 1
+                    },
+                    "indices" : 0
+                }
+            ]
+        }
+    ],
+    "nodes" : [
+        {
+            "name" : "BezierCircle",
+            "scale" : [
+                0.24828438460826874,
+                0.24828438460826874,
+                0.24828438460826874
+            ],
+            "translation" : [
+                0.8141500353813171,
+                0.4038877785205841,
+                -3.1590769290924072
+            ]
+        },
+        {
+            "mesh" : 0,
+            "name" : "NurbsPath.001",
+            "translation" : [
+                0.9663547873497009,
+                0.9741790890693665,
+                -0.43168625235557556
+            ]
+        }
+    ],
+    "scene" : 0,
+    "scenes" : [
+        {
+            "name" : "Scene",
+            "nodes" : [
+                0,
+                1
+            ]
+        }
+    ]
+}
