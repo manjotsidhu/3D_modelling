@@ -21,8 +21,28 @@ let comp1Mesh, comp2Mesh, comp3Mesh, comp4Mesh, comp5Mesh, comp6Mesh, comp7Mesh,
 // Mouse, Intersected , Raycaster
 var mouse = new THREE.Vector2(), INTERSECTED, raycaster;
 
+var angle = 0;
+var radius = 3.4;
+var isMouseDown = false; 
+
+// Stats Monitor
+javascript:(function(){
+    var script=document.createElement('script');
+    script.onload=function(){
+        var stats=new Stats();
+        document.body.appendChild(stats.dom);
+        requestAnimationFrame(function loop(){
+            stats.update();
+            requestAnimationFrame(loop)
+        });
+    };
+    script.src='//mrdoob.github.io/stats.js/build/stats.min.js';
+    document.head.appendChild(script);})()
+
 // init function loads the startup scripts on window load
 function init() {
+
+    window.addEventListener('mousedown', onMouseDown);
     
     // Prespective Camera
 	camera = new THREE.PerspectiveCamera(85, window.innerWidth / window.innerHeight, 0.1, 2000);
@@ -33,7 +53,7 @@ function init() {
 
     // Initialize Renderer
     renderer = new THREE.WebGLRenderer({canvas, antialias: true});
-	renderer.setClearColor("#A9A9A9");
+	//renderer.setClearColor("#A9A9A9");
 	renderer.setSize(window.innerWidth, window.innerHeight);
 	document.body.appendChild(renderer.domElement);
 
@@ -176,15 +196,60 @@ function init() {
     //Axes Helper
     var axesHelper = new THREE.AxesHelper( 3 );
     scene.add( axesHelper );
+
+    //Cube Map
+    let materialArray = [];
+    let texture_ft = new THREE.TextureLoader().load( 'img/front.png');
+    let texture_bk = new THREE.TextureLoader().load( 'img/back.png');
+    let texture_up = new THREE.TextureLoader().load( 'img/top.png');
+    let texture_dn = new THREE.TextureLoader().load( 'img/bottom.png');
+    let texture_rt = new THREE.TextureLoader().load( 'img/left.png');
+    let texture_lf = new THREE.TextureLoader().load( 'img/right.png');
+      
+    materialArray.push(new THREE.MeshBasicMaterial( { map: texture_ft }));
+    materialArray.push(new THREE.MeshBasicMaterial( { map: texture_bk }));
+    materialArray.push(new THREE.MeshBasicMaterial( { map: texture_up }));
+    materialArray.push(new THREE.MeshBasicMaterial( { map: texture_dn }));
+    materialArray.push(new THREE.MeshBasicMaterial( { map: texture_rt }));
+    materialArray.push(new THREE.MeshBasicMaterial( { map: texture_lf }));
+
+    for (let i = 0; i < 6; i++)
+       materialArray[i].side = THREE.BackSide;
+    let skyboxGeo = new THREE.BoxGeometry( 100, 100, 100);
+    let skybox = new THREE.Mesh( skyboxGeo, materialArray );
+    skybox.position.y += 50;
+    scene.add( skybox );  
+    animate();
+
     
 }
 
+function onMouseDown(){
+    isMouseDown = true;
+}
+
+/* Stats like fps, ms, etc
+var stats = new Stats();
+stats.showPanel( 1 ); // 0: fps, 1: ms, 2: mb, 3+: custom
+stats.dom.style.position = 'relative';
+stats.dom.style.float = 'left';
+document.body.appendChild( stats.dom ); */
+
 // animate function renders everytime the screen is refreshed to produce animation
 function animate() {
-    // TODO
+
+    //stats.begin();
+    if(!isMouseDown){
+        camera.position.x = radius * Math.cos( angle );  
+        camera.position.z = radius * Math.sin( angle );
+        angle += 0.01;
+    }
+    
     requestAnimationFrame( animate );
 	controls.update();
-	//annotation.hidden(false);
+    //annotation.hidden(false);
+    //stats.end();
+
 }
 
 // render function will render THREE.js scene
