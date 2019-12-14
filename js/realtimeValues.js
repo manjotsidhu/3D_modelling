@@ -30,12 +30,6 @@ function updateValues(col) {
         setCompValues(1, snapshot.val().value1, snapshot.val().value2);
     }, function (error) {
         console.log("Error: " + error.code);
-        
-        if (col > finalCol)
-            finalCol--;
-        else if (col < finalCol)
-            finalCol++;
-
         updateValues(finalCol);
     });
 
@@ -45,7 +39,6 @@ function updateValues(col) {
         finalCol = col;
         setCompValues(2, snapshot.val().value1, snapshot.val().value2);
     }, function (error) {
-        updateValues(finalCol);
         console.log("Error: " + error.code);
     });
 
