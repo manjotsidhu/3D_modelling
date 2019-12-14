@@ -58,104 +58,100 @@ transition: opacity 0.5s;
 }
 
 .button {
-  background-color: #4CAF50; /* Green */
-  color: #4CAF50;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  float: left;
-  border: 1px solid black;
-  border-radius: 6px;
-}
-.button1 {
-    background-color: #4CAF50; 
-    color: white; 
-    border: 2px solid #4CAF50;
-}
-.button1:hover {
-    background-color: white;
-    color: black;
-    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
-}
-
-.buttonspn {
     display: inline-block;
     border-radius: 4px;
-    background-color: #f4511e;
+    background-color: #000000;
     border: none;
     color: #FFFFFF;
     text-align: center;
-    font-size: 22px;
+    font-size: 28px;
     padding: 20px;
-    width: 200px;
+    width: 100px;
     transition: all 0.5s;
     cursor: pointer;
     margin: 5px;
-  }
-  
-  .buttonspn span {
+    float: left;
+    border: 1px solid black;
+}
+
+.button span {
     cursor: pointer;
     display: inline-block;
     position: relative;
     transition: 0.5s;
-  }
-  
-  .buttonspn span:after {
+}
+
+.button span:after {
     content: '\00bb';
     position: absolute;
     opacity: 0;
     top: 0;
     right: -20px;
     transition: 0.5s;
-  }
-  
-  .buttonspn:hover span {
-    padding-right: 25px;
-  }
-  
-  .buttonspn:hover span:after {
+}
+
+.button:hover span {
+    padding-right: 20px;
+}
+
+.button:hover span:after {
     opacity: 1;
     right: 0;
-  }
-
-  .buttonspn2 {
+}
+.button1 {
     display: inline-block;
     border-radius: 4px;
-    background-color: #f4511e;
+    background-color: #000000;
     border: none;
     color: #FFFFFF;
     text-align: center;
-    font-size: 22px;
+    font-size: 28px;
     padding: 20px;
-    width: 200px;
+    width: 100px;
     transition: all 0.5s;
     cursor: pointer;
     margin: 5px;
-  }
-  
-  .buttonspn2 span {
+    float: left;
+    border: 1px solid black;
+}
+
+.button1 span {
     cursor: pointer;
     display: inline-block;
     position: relative;
     transition: 0.5s;
-  }
-  
-  .buttonspn2 span:after {
+}
+
+.button1 span:after {
     content: '\00ab';
     position: absolute;
     opacity: 0;
     top: 0;
     left: -20px;
     transition: 0.5s;
-  }
-  
-  .buttonspn2:hover span {
-    padding-left: 25px;
-  }
-  
-  .buttonspn2:hover span:after {
+}
+
+.button1:hover span {
+    padding-left: 15px;
+}
+
+.button1:hover span:after {
     opacity: 1;
     left: 0;
-  }
+}
+.button2 {
+    display: inline-block;
+    border-radius: 4px;
+    background-color: #000000;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 28px;
+    padding: 20px;
+    width: 300px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 6px;
+    float: left;
+    border: 1px solid black;
+}
