@@ -155,3 +155,31 @@ transition: opacity 0.5s;
     float: left;
     border: 1px solid black;
 }
+
+/* define a fixed width for the entire menu */
+.navigation {
+  width: 300px;
+  background-color: rgb(43, 51, 51);
+  color: ghostwhite;
+}
+
+/* reset our lists to remove bullet points and padding */
+.mainmenu, .submenu {
+  list-style: none;
+  padding: 1;
+  margin: 2;
+}
+
+/* make ALL links (main and submenu) have padding and background color */
+.mainmenu a {
+  display: block;
+  background-color: rgb(69, 66, 228);
+  text-decoration: none;
+  padding: 10068px;
+  color: rgb(38, 138, 71);
+}
+
+/* add hover behaviour */
+.mainmenu a:hover {
+    background-color: rgb(230, 25, 93);
+}
