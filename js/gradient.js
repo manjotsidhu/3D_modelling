@@ -58,3 +58,10 @@ function setCompValues(compNo, leftTemp, rightTemp) {
     setCompUniforms(compNo, leftTemp, rightTemp);
     setAnnotationValues(compNo, leftTemp, rightTemp);
 }
+
+function getCompValues(compNo) {
+    var value1 = compGroup[compNo-1].colorA.value.r*100;
+    var value2 = compGroup[compNo-1].colorB.value.r*100;
+
+    return { value1, value2};
+}
