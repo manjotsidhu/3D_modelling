@@ -108,7 +108,6 @@ function updateValues(col) {
     // Get Date and TIme
     var dateTime = database.ref(col + "/DT");
     dateTime.on("value", function(snapshot) {
-        console.log("sdsd");
         finalCol = col;
         document.getElementById("dt").textContent = snapshot.val();
     }, function (error) {

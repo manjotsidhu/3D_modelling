@@ -64,7 +64,7 @@ transition: opacity 0.5s;
     border: none;
     color: #FFFFFF;
     text-align: center;
-    font-size: 21px;
+    font-size: 20px;
     padding: 20px;
     width: 100px;
     transition: all 0.5s;
@@ -72,6 +72,8 @@ transition: opacity 0.5s;
     margin: 5px;
     float: left;
     border: 1px solid black;
+    opacity: 0.6; 
+    filter: alpha(opacity=60);
 }
 
 .button span {
@@ -105,7 +107,7 @@ transition: opacity 0.5s;
     border: none;
     color: #FFFFFF;
     text-align: center;
-    font-size: 28px;
+    font-size: 20px;
     padding: 20px;
     width: 100px;
     transition: all 0.5s;
@@ -113,6 +115,8 @@ transition: opacity 0.5s;
     margin: 5px;
     float: left;
     border: 1px solid black;
+    opacity: 0.6; 
+    filter: alpha(opacity=60);
 }
 
 .button1 span {
@@ -146,7 +150,7 @@ transition: opacity 0.5s;
     border: none;
     color: #FFFFFF;
     text-align: center;
-    font-size: 28px;
+    font-size: 20px;
     padding: 20px;
     width: 300px;
     transition: all 0.5s;
@@ -154,6 +158,8 @@ transition: opacity 0.5s;
     margin: 6px;
     float: left;
     border: 1px solid black;
+    opacity: 0.6; 
+    filter: alpha(opacity=60);
 }
 
 /* define a fixed width for the entire menu */
