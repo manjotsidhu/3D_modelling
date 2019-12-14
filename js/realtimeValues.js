@@ -108,8 +108,9 @@ function updateValues(col) {
     // Get Date and TIme
     var dateTime = database.ref(col + "/DT");
     dateTime.on("value", function(snapshot) {
+        console.log("sdsd");
         finalCol = col;
-        // TODO: Put to css box
+        document.getElementById("dt").textContent = snapshot.val();
     }, function (error) {
         console.log("Error: " + error.code);
     });
@@ -131,4 +132,12 @@ function changeValues() {
         DT: new Date().toLocaleString(),
       });
 
+}
+
+function updatePastValues() {
+    updateValues(finalCol-1);
+}
+
+function updateFutureValues() {
+    updateValues(finalCol+1);
 }
