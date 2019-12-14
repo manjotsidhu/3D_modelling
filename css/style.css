@@ -9,7 +9,21 @@ canvas {
     height: 100%;
     display: block;
 }
-
+.column {
+    float: left;
+    width: 32%;
+    padding: 9px;
+  }
+  .row::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+  } 
 .annotation {
     position: absolute;
     top: 0;
