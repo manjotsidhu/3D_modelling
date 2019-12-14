@@ -58,7 +58,7 @@ function init() {
 
     // Initialize Renderer
     renderer = new THREE.WebGLRenderer({canvas, antialias: true});
-	renderer.setClearColor("#A9A9A9");
+	renderer.setClearColor("#404040");
 	renderer.setSize(window.innerWidth, window.innerHeight);
 	document.body.appendChild(renderer.domElement);
 
@@ -199,8 +199,8 @@ function init() {
     } );
     
     //Axes Helper
-    var axesHelper = new THREE.AxesHelper( 3 );
-    scene.add( axesHelper );
+    //var axesHelper = new THREE.AxesHelper( 3 );
+    //scene.add( axesHelper );
     
 }
 
