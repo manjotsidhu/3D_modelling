@@ -21,8 +21,33 @@ let comp1Mesh, comp2Mesh, comp3Mesh, comp4Mesh, comp5Mesh, comp6Mesh, comp7Mesh,
 // Mouse, Intersected , Raycaster
 var mouse = new THREE.Vector2(), INTERSECTED, raycaster;
 
+var angle = 0;
+var radius = 3.4;
+var isMouseDown = false; 
+
+// Stats Monitor
+javascript:(function(){
+    var script=document.createElement('script');
+    script.onload=function(){
+        var stats=new Stats();
+        stats.dom.style.position = 'absolute';
+        stats.dom.style.right = '0';
+        stats.dom.style.bottom = '0';
+        stats.dom.style.top = 'auto';
+        stats.dom.style.left = 'auto';
+        document.body.appendChild(stats.dom);
+        requestAnimationFrame(function loop(){
+            stats.update();
+            requestAnimationFrame(loop)
+        });
+    };
+    script.src='//mrdoob.github.io/stats.js/build/stats.min.js';
+    document.head.appendChild(script);})()
+
 // init function loads the startup scripts on window load
 function init() {
+
+    window.addEventListener('mousedown', onMouseDown);
     
     // Prespective Camera
 	camera = new THREE.PerspectiveCamera(85, window.innerWidth / window.innerHeight, 0.1, 2000);
@@ -179,12 +204,25 @@ function init() {
     
 }
 
+function onMouseDown(){
+    isMouseDown = true;
+}
+
 // animate function renders everytime the screen is refreshed to produce animation
 function animate() {
-    // TODO
+
+    //stats.begin();
+    if(!isMouseDown){
+        camera.position.x = radius * Math.cos( angle );  
+        camera.position.z = radius * Math.sin( angle );
+        angle += 0.01;
+    }
+    
     requestAnimationFrame( animate );
 	controls.update();
-	//annotation.hidden(false);
+    //annotation.hidden(false);
+    //stats.end();
+
 }
 
 // render function will render THREE.js scene
