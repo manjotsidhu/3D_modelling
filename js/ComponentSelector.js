@@ -181,4 +181,7 @@ function updateScreenPosition() {
 function setAnnotationValues(compNo, lT, rT) {
     document.getElementById("anComp" + compNo + "LT").textContent = lT;
     document.getElementById("anComp" + compNo + "RT").textContent = rT;
+    // TODO
+    document.getElementById("aComp" + compNo + "LT").textContent = lT;
+    document.getElementById("aComp" + compNo + "RT").textContent = rT;
 }
