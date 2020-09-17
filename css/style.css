@@ -41,7 +41,7 @@ canvas {
     line-height: 1.2;
     
 transition: opacity 0.5s;
-    &::before {
+    ::before {
         content: "1";
         position: absolute;
         top: -30px;
