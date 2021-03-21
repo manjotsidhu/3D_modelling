@@ -12,23 +12,68 @@
         <!-- Main body START -->
 
        <!-- Title Bar -->
-       <div class="row">
+       <div class="row" style="position:absolute; opacity: 0.6; filter: alpha(opacity=60); background-color: white; width:100%;">
             <div class="column">
-              <img src="models/Ingersoll_Rand_logo.svg.png" align='Left' style="width:auto; height: 50px;">
+              <img src="models/Ingersoll_Rand_logo.svg.png" align='left' style="width:auto;height:50px;">
             </div>
             <div class="column">
-                <img src="models/logo2.png" align="center" style="width:auto;height: 50px;">
+                <div style="margin:0; height: 10px; vertical-align: middle;" align="center"><font face="Calibri" size="7" color="red">3D Modelling</font></div>
             </div>
             <div class="column">
-              <img src="models/logo-2.jpg" align="right" style="width:auto; height: 60px;" >
+              <img src="models/logo-2.jpg" align="right" style="width:auto; height:50px;" >
             </div>
             
           </div>
+        
+        <!-- Menu Panel-->
+        <div class="navigation" style="position: absolute; top: 80px; left: 5px;">
+                <h3 style="margin-left: 30px;">Generic Compressor</h3>
+                <hr>
+                <ul class="mainmenu">
+                    <li>Cylinder 1
+                    <ul class="submenu"><li>Left end temperature: <span id="aComp1LT"></span>%<br>Right end temperature: <span id="aComp1RT"></span>% </li>
+                    </ul></li>
+                    <br>
+                    <li>Cylinder 2
+                    <ul class="submenu"><li>Left end temperature: <span id="aComp2LT"></span>%<br>Right end temperature: <span id="aComp2RT"></span>%</li>
+                    </ul></li>
+                    <br>
+                    <li>Cylinder 3
+                    <ul class="submenu"><li>Left end temperature: <span id="aComp3LT"></span>%<br>Right end temperature: <span id="aComp3RT"></span>%</li>
+                    </ul></li>
+                    <br>
+                    <li>Cylinder 4
+                    <ul class="submenu"><li>Left end temperature: <span id="aComp4LT"></span>%<br>Right end temperature: <span id="aComp4RT"></span>%</li>
+                    </ul></li>
+                    <br>
+                    <li>Pipe 1
+                    <ul class="submenu"><li>Left end temperature: <span id="aComp8LT"></span>%<br>Right end temperature: <span id="aComp5RT"></span>%</li>
+                    </ul></li>
+                    <br>
+                    <li>Pipe 2
+                    <ul class="submenu"><li>Left end temperature: <span id="aComp9LT"></span>%<br>Right end temperature: <span id="aComp6RT"></span>%</li>
+                    </ul></li>
+                    <br>
+                    <li>Component 7
+                    <ul class="submenu"><li>Left end temperature: <span id="aComp7LT"></span>%<br>Right end temperature: <span id="aComp7RT"></span>%</li>
+                    </ul></li>
+                    <br>
+                    <li>Component 8
+                    <ul class="submenu"><li>Left end temperature: <span id="aComp5LT"></span>%<br>Right end temperature: <span id="aComp8RT"></span>%</li>
+                    </ul></li>
+                    <br>
+                    <li>Component 9
+                    <ul class="submenu"><li>Left end temperature: <span id="aComp6LT"></span>%<br>Right end temperature: <span id="aComp9RT"></span>%</li>
+                    </ul></li>
+                </ul>
+        </div>
 
         <!-- Buttons for history -->
-        <button class = "buttonspn2"><span>PAST</span></button>
-        <button class = "button button1">text</button>
-        <button class = "buttonspn"><span>FUTURE</span></button>
+        <div style="position: absolute; top: 80%; left:30%">
+            <button class="button1" style="vertical-align:middle" onclick="updatePastValues()"><span>Back </span></button>
+            <button id="dt" class="button2" style="vertical-align:middle"><span>Loading...</span></button>
+            <button class="button" style="vertical-align:middle" onclick="updateFutureValues()"><span> Next </span></button>
+        </div>
 
         <!-- Annotation for comp1-->
         <div class="annotation" hidden="true" id="anComp1">
